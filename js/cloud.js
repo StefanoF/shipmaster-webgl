@@ -2,7 +2,7 @@ function Cloud(){
 	// Create an empty container that will hold the different parts of the cloud
 	this.mesh = new THREE.Object3D();
 	
-	// create a cube geometry;
+	// create a sphere geometry;
 	// this shape will be duplicated to create the cloud
 	var geom = new THREE.SphereGeometry(20,20,20);
 	
@@ -18,22 +18,24 @@ function Cloud(){
 		// create the mesh by cloning the geometry
 		var m = new THREE.Mesh(geom, mat); 
 		
-		// set the position and the rotation of each cube randomly
+		// set the position each sphere randomly
 		m.position.x = i*15;
 		m.position.y = Math.random()*10;
 		m.position.z = Math.random()*10;
+
+		// set the rotation of each sphere randomly
 		m.rotation.z = Math.random()*Math.PI*2;
 		m.rotation.y = Math.random()*Math.PI*2;
 		
-		// set the size of the cube randomly
+		// set the size of the sphere randomly
 		var s = .1 + Math.random()*.9;
 		m.scale.set(s,s,s);
 		
-		// allow each cube to cast and to receive shadows
+		// allow each sphere to cast and to receive shadows
 		m.castShadow = true;
 		m.receiveShadow = true;
 		
-		// add the cube to the container we first created
+		// add the sphere to the container we first created
 		this.mesh.add(m);
 	} 
 }

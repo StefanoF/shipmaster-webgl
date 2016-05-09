@@ -22,18 +22,19 @@ function Sea () {
 	this.mesh = new THREE.Mesh(geom, mat);
 
 	// Allow the sea to receive shadows
-	this.mesh.receiveShadow = true; 
-
-	mine = new Mine();
-	mine.mesh.position.x = Math.random()*10;
-	mine.mesh.position.y = Math.random()*10 + 600;
-	mine.mesh.position.z = Math.random()*200;
-	this.mesh.add(mine.mesh);
+	this.mesh.receiveShadow = true;
 }
 
 var sea;
 function createSea(){
 	sea = new Sea();
 	sea.mesh.position.y = -600;
+
+	var i = 0;
+	for(; i<nMines; i++){
+
+		createMine(sea.mesh);
+	}
+
 	scene.add(sea.mesh);
 }

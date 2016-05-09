@@ -1,5 +1,7 @@
 function interactive() {
-	document.	addEventListener('mousemove', handleMouseMove, false);
+	document.addEventListener('mousemove', handleMouseMove, false);
+
+	document.addEventListener('mousedown', handleMouseDown, false);
 }
 
 var mousePos = {
@@ -22,4 +24,10 @@ function handleMouseMove(event) {
 		x:tx, 
 		y:ty
 	};
+}
+
+function handleMouseDown(event){
+	// create mine when create a sea
+	//createMine(sea.mesh);
+	console.log('mouse down');
 }

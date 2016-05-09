@@ -41,7 +41,7 @@ function createScene() {
 	
 	// Set the position of the camera
 	camera.position.x = 0;
-	camera.position.z = 400;
+	camera.position.z = 450;
 	camera.position.y = 100;
 	
 	// Create the renderer

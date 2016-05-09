@@ -30,7 +30,7 @@ function Sky(){
 
 		// for a better result, we position the clouds 
 		// at random depths inside of the scene
-		c.mesh.position.z = -400-Math.random()*400;
+		c.mesh.position.z = -200-Math.random()*200;
 		
 		// we also set a random scale for each cloud
 		var s = 1+Math.random()*2;

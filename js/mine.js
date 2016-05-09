@@ -21,8 +21,34 @@ function Mine(){
 }
 
 var mine;
-function createMine() {
+var nMines = 5;
+var nMinesCounter = 0;
+
+function createMine(seaMesh) {
+	if(nMinesCounter == nMines)
+		return; 
+
 	mine = new Mine();
-	mine.mesh.position.z = -300;
-	scene.add(mine.mesh);
+	nMinesCounter++;
+
+	// To distribute the clouds consistently,
+	// we need to place them according to a uniform angle
+	var mineStepAngle = Math.PI*2 / nMines;
+
+	// set the rotation and the position of each cloud;
+	// for that we use a bit of trigonometry
+	// this is the final angle of the cloud
+	var a = mineStepAngle * nMinesCounter; 
+
+	// this is the distance between the center of the axis and the cloud itself
+	var h = 600 + Math.random()*10; 
+
+	// Trigonometry!!! I hope you remember what you've learned in Math :)
+	// in case you don't: 
+	// we are simply converting polar coordinates (angle, distance) into Cartesian coordinates (x, y)
+	mine.mesh.position.y = Math.sin(a)*h;
+	mine.mesh.position.x = Math.cos(a)*h;
+	mine.mesh.position.z = Math.floor(Math.random() * (200+1 - (-200))) + (-200);
+
+	seaMesh.add(mine.mesh);
 }

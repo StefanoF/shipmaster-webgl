@@ -1,7 +1,5 @@
 function loop() {
-	// Rotate the propeller, the sea and the sky
-	// airplane.propeller.rotation.x += 0.3;
-	sea.mesh.rotation.z += .006; // .006
+	sea.mesh.rotation.z += .006;
 	sky.mesh.rotation.z += .008;
 
 	boatRotationLoop();
