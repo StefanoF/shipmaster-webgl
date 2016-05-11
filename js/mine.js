@@ -21,9 +21,8 @@ function Mine(){
 }
 
 var mine;
-var nMines = 5;
+var nMines = 1;
 var nMinesCounter = 0;
-
 function createMine(seaMesh) {
 	if(nMinesCounter == nMines)
 		return; 

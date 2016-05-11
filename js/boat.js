@@ -40,10 +40,29 @@ function boatRotationLoop(){
 			boatRotation = true;
 		}
 	}
+
+
+	mineHolder();
 }
 
 function updateBoat(){
 	// Change boat position based on mouse movement
 	boat.mesh.position.z = mousePos.x  * 200;
+}
 
+function mineHolder(){
+	//collision detection
+	var originPoint = boat.mesh.position.clone();
+	for (var vertexIndex = 0; vertexIndex < boat.mesh.geometry.vertices.length; vertexIndex++)
+  {
+    var localVertex = boat.mesh.geometry.vertices[vertexIndex].clone();
+    var globalVertex = localVertex.applyMatrix4( boat.mesh.matrix );
+    var directionVector = globalVertex.sub( boat.mesh.position );
+    var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+    var collisionResults = ray.intersectObjects( [mine.mesh] );
+    if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
+    {
+       console.log('hit');
+    }
+  }
 }
