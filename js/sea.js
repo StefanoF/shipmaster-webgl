@@ -26,15 +26,17 @@ function Sea () {
 }
 
 var sea;
+var MAX_MINES = 3;
 function createSea(){
 	sea = new Sea();
 	sea.mesh.position.y = -600;
 
 	var i = 0;
-	for(; i<nMines; i++){
-
-		createMine(sea.mesh);
+	for(var i = 0; i<MAX_MINES; i++){
+		var mine = createMine(i);
+		sea.mesh.add(mine.mesh);
 	}
+
 
 	scene.add(sea.mesh);
 }

@@ -59,10 +59,16 @@ function mineHolder(){
     var globalVertex = localVertex.applyMatrix4( boat.mesh.matrix );
     var directionVector = globalVertex.sub( boat.mesh.position );
     var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
-    var collisionResults = ray.intersectObjects( [mine.mesh] );
+    var collisionResults = ray.intersectObjects( extractMesh(mines) );
     if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
     {
-       console.log('hit');
+      sea.mesh.remove(collisionResults[0].object);
     }
   }
+}
+
+function extractMesh(objs){
+	return objs.map(function(obj){
+		return obj.mesh;
+	});
 }
