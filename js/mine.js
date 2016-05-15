@@ -1,9 +1,9 @@
 function Mine(){
-	// Create an empty container that will hold the different parts of the cloud
+	// Create an empty container that will hold the different parts of the mine
 	this.mesh = new THREE.Object3D();
 	
 	// create a cube geometry;
-	// this shape will be duplicated to create the cloud
+	// this shape will be duplicated to create the mine
 	var geom = new THREE.BoxGeometry(60,60,60);
 	
 	// create a material; a simple white material will do the trick
@@ -27,16 +27,16 @@ function createMine(index) {
 	mines[index] = new Mine();
 	nMinesCounter++;
 
-	// To distribute the clouds consistently,
+	// To distribute the mines consistently,
 	// we need to place them according to a uniform angle
 	var mineStepAngle = Math.PI*2 / nMinesCounter;
 
-	// set the rotation and the position of each cloud;
+	// set the rotation and the position of each mine;
 	// for that we use a bit of trigonometry
-	// this is the final angle of the cloud
+	// this is the final angle of the mine
 	var a = mineStepAngle * nMinesCounter; 
 
-	// this is the distance between the center of the axis and the cloud itself
+	// this is the distance between the center of the axis and the mine itself
 	var h = 600 + Math.random()*10; 
 
 	// Trigonometry!!! I hope you remember what you've learned in Math :)
