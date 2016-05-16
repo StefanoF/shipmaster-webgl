@@ -18,9 +18,7 @@ game.handleMouseMove = function(event) {
 };
 
 game.handleMouseDown = function(event){
-	// create mine when create a sea
-	//createMine(sea.mesh);
-	console.log('mouse down');
+	//console.log('mouse down');
 };
 
 game.handleWindowResize = function() {
