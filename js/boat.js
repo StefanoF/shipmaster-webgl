@@ -18,13 +18,13 @@ game.Boat = function() {
 	var boatRotation = true;
 	this.boatRotationLoop = function() {	
 		if(boatRotation){
-			this.mesh.rotation.z -= .006;
+			this.mesh.rotation.z -= 0.006;
 
 			if(this.mesh.rotation.z < -0.05){
 				boatRotation = false;
 			}
 		}else{
-			this.mesh.rotation.z += .004 ;
+			this.mesh.rotation.z += 0.004 ;
 
 			if(this.mesh.rotation.z > 0.18){
 				boatRotation = true;

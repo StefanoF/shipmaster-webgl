@@ -15,13 +15,13 @@ game.handleMouseMove = function(event) {
 		x:tx, 
 		y:ty
 	};
-}
+};
 
 game.handleMouseDown = function(event){
 	// create mine when create a sea
 	//createMine(sea.mesh);
 	console.log('mouse down');
-}
+};
 
 game.handleWindowResize = function() {
 	renderer.setSize(window.innerWidth, window.innerHeight);

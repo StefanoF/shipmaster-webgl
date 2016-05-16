@@ -12,7 +12,7 @@ game.Sea = function() {
 	this.mat = new THREE.MeshPhongMaterial({
 		color: game.colors.blue,
 		transparent:true,
-		opacity:.6,
+		opacity:0.6,
 		shading:THREE.FlatShading,
 	});
 
@@ -34,4 +34,4 @@ game.Sea = function() {
 	}	
 
 	scene.add(this.mesh);
-}
+};

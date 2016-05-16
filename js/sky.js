@@ -38,4 +38,4 @@ game.Sky = function() {
 	}
 
 	scene.add(this.mesh);
-}
+};

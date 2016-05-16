@@ -27,7 +27,7 @@ game.Cloud = function() {
 		m.rotation.y = Math.random()*Math.PI*2;
 		
 		// set the size of the sphere randomly
-		var s = .1 + Math.random()*.9;
+		var s = 0.1 + Math.random() * 0.9;
 		m.scale.set(s,s,s);
 		
 		// allow each sphere to cast and to receive shadows
@@ -37,4 +37,4 @@ game.Cloud = function() {
 		// add the sphere to the container we first created
 		this.mesh.add(m);
 	} 
-}
+};

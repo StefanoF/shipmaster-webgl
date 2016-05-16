@@ -2,11 +2,11 @@ game.Lights = function() {
 	// A hemisphere light is a gradient colored light; 
 	// the first parameter is the sky color, the second parameter is the ground color, 
 	// the third parameter is the intensity of the light
-	this.hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, .9)
+	this.hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, 0.9);
 	
 	// A directional light shines from a specific direction. 
 	// It acts like the sun, that means that all the rays produced are parallel. 
-	this.shadowLight = new THREE.DirectionalLight(0xffffff, .9);
+	this.shadowLight = new THREE.DirectionalLight(0xffffff, 0.9);
 
 	// Set the direction of the light  
 	this.shadowLight.position.set(150, 350, 350);
@@ -30,4 +30,4 @@ game.Lights = function() {
 	// to activate the lights, just add them to the scene
 	scene.add(this.hemisphereLight);  
 	scene.add(this.shadowLight);
-}
+};

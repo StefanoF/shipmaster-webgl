@@ -10,7 +10,7 @@ game.Mine = function(index) {
 	
 	this.mesh = new THREE.Mesh(this.geom, this.mat);
 
-	var s = .1 + Math.random()*.9;
+	var s = 0.1 + Math.random() * 0.9;
 	this.mesh.scale.set(s,s,s);
 
 	this.mesh.castShadow = true;
@@ -34,4 +34,4 @@ game.Mine = function(index) {
 	this.mesh.position.y = Math.sin(a)*h;
 	this.mesh.position.x = Math.cos(a)*h;
 	this.mesh.position.z = Math.floor(Math.random() * (200+1 - (-200))) + (-200);
-}
+};

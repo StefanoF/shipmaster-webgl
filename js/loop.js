@@ -1,6 +1,6 @@
 game.Loop = function () {
-	sea.mesh.rotation.z += .006;
-	sky.mesh.rotation.z += .008;
+	sea.mesh.rotation.z += 0.006;
+	sky.mesh.rotation.z += 0.008;
 
 	boat.boatRotationLoop();
 	boat.updateBoat();
