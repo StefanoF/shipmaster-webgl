@@ -1,17 +1,16 @@
-// First let's define a Sea object :
-function Sea () {
+game.Sea = function() {
 	
 	// create the geometry (shape) of the cylinder;
 	// the parameters are: 
 	// radius top, radius bottom, height, number of segments on the radius, number of segments vertically
-	var geom = new THREE.CylinderGeometry(600,600,800,40,10);
+	this.geom = new THREE.CylinderGeometry(600,600,800,40,10);
 	
 	// rotate the geometry on the x axis
-	geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI/2));
+	this.geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI/2));
 	
 	// create the material 
-	var mat = new THREE.MeshPhongMaterial({
-		color:Colors.blue,
+	this.mat = new THREE.MeshPhongMaterial({
+		color: game.colors.blue,
 		transparent:true,
 		opacity:.6,
 		shading:THREE.FlatShading,
@@ -19,24 +18,20 @@ function Sea () {
 
 	// To create an object in Three.js, we have to create a mesh 
 	// which is a combination of a geometry and some material
-	this.mesh = new THREE.Mesh(geom, mat);
+	this.mesh = new THREE.Mesh(this.geom, this.mat);
 
 	// Allow the sea to receive shadows
 	this.mesh.receiveShadow = true;
-}
 
-var sea;
-var MAX_MINES = 3;
-function createSea(){
-	sea = new Sea();
-	sea.mesh.position.y = -600;
+	
+	this.mesh.position.y = -600;
 
-	var i = 0;
-	for(var i = 0; i<MAX_MINES; i++){
-		var mine = createMine(i);
-		sea.mesh.add(mine.mesh);
-	}
+	this.mines = [];
+	for(var i = 0; i<game.MAX_MINES; i++){
+		var mine = new game.Mine(i);
+		this.mines.push(mine.mesh);
+		this.mesh.add(mine.mesh);
+	}	
 
-
-	scene.add(sea.mesh);
+	scene.add(this.mesh);
 }

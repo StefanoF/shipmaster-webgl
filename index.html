@@ -3,34 +3,30 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" href="css/main.css" />
+	<meta charset="utf-8">
 </head>
 <body>
 	<div id="world"></div>
 
 	<script type="text/javascript" src="lib/three.js"></script>
-	<script type="text/javascript" src="js/cloud.js"></script>
-	<script type="text/javascript" src="js/boat.js"></script>
-	<script type="text/javascript" src="js/sky.js"></script>
-	<script type="text/javascript" src="js/mine.js"></script>
-	<script type="text/javascript" src="js/sea.js"></script>
-	<script type="text/javascript" src="js/scene.js"></script>
-	<script type="text/javascript" src="js/lights.js"></script>
+	
+	<script type="text/javascript" src="js/game.js"></script>
 
+	<script type="text/javascript" src="js/boat.js"></script>
+	<script type="text/javascript" src="js/camera.js"></script>
+	<script type="text/javascript" src="js/cloud.js"></script>
 	<script type="text/javascript" src="js/interactive.js"></script>
+	<script type="text/javascript" src="js/lights.js"></script>
 	<script type="text/javascript" src="js/loop.js"></script>
+	<script type="text/javascript" src="js/mine.js"></script>
+	<script type="text/javascript" src="js/renderer.js"></script>
+	<script type="text/javascript" src="js/scene.js"></script>
+	<script type="text/javascript" src="js/sea.js"></script>
+	<script type="text/javascript" src="js/sky.js"></script>
+
 	<script type="text/javascript">
 		window.addEventListener('load', init, false);
-
-		var Colors = {
-			red:0xf25346,
-			white:0xd8d0d1,
-			brown:0x59332e,
-			pink:0xF5986E,
-			brownDark:0x23190f,
-			blue:0x68c3c0,
-			fog:0xf7d9aa
-		};
-
+		
 		function init() {
 			/* 
 				set up:
@@ -38,26 +34,27 @@
 				- the camera
 				- the renderer
 			*/
-			createScene();
+			scene = new game.Scene().scene;
+			renderer = new game.Renderer().renderer;
+			camera = new game.Camera().camera;
 
 			// add the lights
-			createLights();
+			lights = new game.Lights();
 
 			// add the objects
-			// createPlane();
-			createSea();
-			createSky();
-			createBoat();
+			sea = new game.Sea();
+			sky = new game.Sky();
+			boat = new game.Boat();
 
 			//add the mouse listener
-			interactive();
+			game.Interactive();
 
 			/*
 				start a loop that will:
 				- update the objects' positions 
 				- render the scene on each frame
 			*/
-			loop();
+			game.Loop();
 		}
 	</script>
 </body>

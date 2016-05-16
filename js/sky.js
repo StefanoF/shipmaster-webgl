@@ -1,18 +1,15 @@
-// Define a Sky Object
-function Sky(){
+game.Sky = function() {
 	// Create an empty container
 	this.mesh = new THREE.Object3D();
-	
-	// choose a number of clouds to be scattered in the sky
-	this.nClouds = 20;
+	this.mesh.position.y = -600;
 	
 	// To distribute the clouds consistently,
 	// we need to place them according to a uniform angle
-	var stepAngle = Math.PI*2 / this.nClouds;
+	var stepAngle = Math.PI*2 / game.NCLOUDS;
 	
 	// create the clouds
-	for(var i=0; i<this.nClouds; i++){
-		var c = new Cloud();
+	for(var i=0; i<game.NCLOUDS; i++){
+		var c = new game.Cloud();
 	 
 		// set the rotation and the position of each cloud;
 		// for that we use a bit of trigonometry
@@ -38,12 +35,7 @@ function Sky(){
 
 		// do not forget to add the mesh of each cloud in the scene
 		this.mesh.add(c.mesh);  
-	}  
-}
+	}
 
-var sky;
-function createSky() {
-	sky = new Sky();
-	sky.mesh.position.y = -600;
-	scene.add(sky.mesh);
+	scene.add(this.mesh);
 }

@@ -1,74 +1,61 @@
-function Boat () {
+game.Boat = function() {
 	
-	var geom = new THREE.BoxGeometry( 200, 30, 80 );
+	this.geom = new THREE.BoxGeometry( 200, 30, 80 );
 	
 	// create the material 
-	var mat = new THREE.MeshPhongMaterial({
-		color:Colors.brown,
+	this.mat = new THREE.MeshPhongMaterial({
+		color: game.colors.brown,
 		shading:THREE.FlatShading,
 	});
 
-	this.mesh = new THREE.Mesh(geom, mat);
+	this.mesh = new THREE.Mesh(this.geom, this.mat);
 
 	this.mesh.receiveShadow = true; 
-}
 
-var boat;
-function createBoat() {
-	boat = new Boat();
-	boat.mesh.position.z = -300;
-	scene.add(boat.mesh);
-}
+	this.mesh.position.z = -300;
+	scene.add(this.mesh);
 
-var boatRotation = true;
-function boatRotationLoop(){
-	if(boatRotation){
-		//vado su
-		Math.random()
-		boat.mesh.rotation.z -= .006;
+	var boatRotation = true;
+	this.boatRotationLoop = function() {	
+		if(boatRotation){
+			this.mesh.rotation.z -= .006;
 
-		if(boat.mesh.rotation.z < -0.05){
-			boatRotation = false;
+			if(this.mesh.rotation.z < -0.05){
+				boatRotation = false;
+			}
+		}else{
+			this.mesh.rotation.z += .004 ;
+
+			if(this.mesh.rotation.z > 0.18){
+				boatRotation = true;
+			}
 		}
-	}
-
-	if(!boatRotation){
-		//vado su
-		boat.mesh.rotation.z += .004 ;
-
-		if(boat.mesh.rotation.z > 0.18){
-			boatRotation = true;
-		}
-	}
 
 
-	mineHolder();
-}
+		this.mineHolder();
+	};
 
-function updateBoat(){
-	// Change boat position based on mouse movement
-	boat.mesh.position.z = mousePos.x  * 200;
-}
+	this.mineHolder = function() {
+		//collision detection
+		var originPoint = this.mesh.position.clone();
+		var verticesLenght = this.mesh.geometry.vertices.length;
+		for (var vertexIndex = 0; vertexIndex < verticesLenght; vertexIndex++)
+	  {
+	    var localVertex = this.mesh.geometry.vertices[vertexIndex].clone();
+	    var globalVertex = localVertex.applyMatrix4( this.mesh.matrix );
+	    var directionVector = globalVertex.sub( this.mesh.position );
+	    var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+	    var collisionResults = ray.intersectObjects( sea.mines );
 
-function mineHolder(){
-	//collision detection
-	var originPoint = boat.mesh.position.clone();
-	for (var vertexIndex = 0; vertexIndex < boat.mesh.geometry.vertices.length; vertexIndex++)
-  {
-    var localVertex = boat.mesh.geometry.vertices[vertexIndex].clone();
-    var globalVertex = localVertex.applyMatrix4( boat.mesh.matrix );
-    var directionVector = globalVertex.sub( boat.mesh.position );
-    var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
-    var collisionResults = ray.intersectObjects( extractMesh(mines) );
-    if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
-    {
-      sea.mesh.remove(collisionResults[0].object);
-    }
-  }
-}
+	    if ( collisionResults.length > 0 && 
+	    	collisionResults[0].distance < directionVector.length() ) {
+	      sea.mesh.remove(collisionResults[0].object);
+	    }
+	  }
+	};
 
-function extractMesh(objs){
-	return objs.map(function(obj){
-		return obj.mesh;
-	});
-}
+	this.updateBoat = function() {
+		// Change boat position based on mouse movement
+		this.mesh.position.z = game.mousePos.x  * 200;
+	};
+};

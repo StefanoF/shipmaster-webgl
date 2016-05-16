@@ -1,33 +1,30 @@
-function interactive() {
-	document.addEventListener('mousemove', handleMouseMove, false);
+game.Interactive = function() {
+	document.addEventListener('mousemove', game.handleMouseMove, false);
+	document.addEventListener('mousedown', game.handleMouseDown, false);
 
-	document.addEventListener('mousedown', handleMouseDown, false);
-}
+	// Listen to the screen: if the user resizes it
+	// we have to update the camera and the renderer size
+	window.addEventListener('resize', game.handleWindowResize, false);
 
-var mousePos = {
-	x:0, 
-	y:0
 };
 
-function handleMouseMove(event) {
-	// here we are converting the mouse position value received 
-	// to a normalized value varying between -1 and 1;
-	// this is the formula for the horizontal axis:
-	
-	var tx = -1 + (event.clientX / WIDTH)*2;
-
-	// for the vertical axis, we need to inverse the formula 
-	// because the 2D y-axis goes the opposite direction of the 3D y-axis
-	
-	var ty = 1 - (event.clientY / HEIGHT)*2;
-	mousePos = {
+game.handleMouseMove = function(event) {
+	var tx = -1 + (event.clientX / game.WIDTH)*2;
+	var ty = 1 - (event.clientY / game.HEIGHT)*2;
+	game.mousePos = {
 		x:tx, 
 		y:ty
 	};
 }
 
-function handleMouseDown(event){
+game.handleMouseDown = function(event){
 	// create mine when create a sea
 	//createMine(sea.mesh);
 	console.log('mouse down');
 }
+
+game.handleWindowResize = function() {
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+};
