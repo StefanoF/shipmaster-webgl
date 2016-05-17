@@ -1,8 +1,14 @@
 game.Sea = function() {
 	
-	// create the geometry (shape) of the cylinder;
-	// the parameters are: 
-	// radius top, radius bottom, height, number of segments on the radius, number of segments vertically
+	/*
+		create the geometry (shape) of the cylinder;
+		the parameters are:	 
+		radius top,
+		radius bottom, 
+		height, 
+		number of segments on the radius, 
+		number of segments vertically
+	*/
 	this.geom = new THREE.CylinderGeometry(600,600,800,40,10);
 	
 	// rotate the geometry on the x axis
@@ -22,16 +28,15 @@ game.Sea = function() {
 
 	// Allow the sea to receive shadows
 	this.mesh.receiveShadow = true;
-
 	
 	this.mesh.position.y = -600;
 
+	// add the mines to the sea mesh
 	this.mines = [];
 	for(var i = 0; i<game.MAX_MINES; i++){
-		var mine = new game.Mine(i);
-		this.mines.push(mine.mesh);
-		this.mesh.add(mine.mesh);
-	}	
+		this.mines.push(new game.Mine(i).mesh);
+		this.mesh.add(this.mines[i]);
+	}
 
 	scene.add(this.mesh);
 };

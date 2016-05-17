@@ -6,14 +6,14 @@ game.Cloud = function() {
 	// this shape will be duplicated to create the cloud
 	this.geom = new THREE.SphereGeometry(20,20,20);
 	
-	// create a material; a simple white material will do the trick
+	// create a simple white material
 	this.mat = new THREE.MeshPhongMaterial({
 		color: game.colors.white,  
 	});
 	
 	// duplicate the geometry a random number of times
-	var nBlocs = 3+Math.floor(Math.random()*3);
-	for (var i=0; i<nBlocs; i++ ){
+	var nSphere = 3+Math.floor(Math.random()*3);
+	for (var i=0; i < nSphere; i++ ){
 		// create the mesh by cloning the geometry
 		var m = new THREE.Mesh(this.geom, this.mat); 
 		

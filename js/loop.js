@@ -2,8 +2,7 @@ game.Loop = function () {
 	sea.mesh.rotation.z += 0.006;
 	sky.mesh.rotation.z += 0.008;
 
-	boat.boatRotationLoop();
-	boat.updateBoat();
+	boat.update();
 
 	renderer.render(scene, camera);
 

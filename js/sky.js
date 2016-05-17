@@ -16,11 +16,9 @@ game.Sky = function() {
 		var a = stepAngle*i; // this is the final angle of the cloud
 		var h = 750 + Math.random()*200; // this is the distance between the center of the axis and the cloud itself
 
-		// Trigonometry!!! I hope you remember what you've learned in Math :)
-		// in case you don't: 
-		// we are simply converting polar coordinates (angle, distance) into Cartesian coordinates (x, y)
-		c.mesh.position.y = Math.sin(a)*h;
+		// convert polar coordinates (angle, distance) into Cartesian coordinates (x, y)
 		c.mesh.position.x = Math.cos(a)*h;
+		c.mesh.position.y = Math.sin(a)*h;
 
 		// rotate the cloud according to its position
 		c.mesh.rotation.z = a + Math.PI/2;
